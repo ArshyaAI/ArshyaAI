@@ -20,6 +20,8 @@ Format:
 - Written result summary after the sprint
 - Priority on revenue-blocking or launch-blocking issues
 
+Details and pricing bands: [RESCUE-SPRINT.md](./RESCUE-SPRINT.md)
+
 Recent public proof:
 
 - Algora / Highlight bounty PR: https://github.com/highlight/highlight/pull/10471
