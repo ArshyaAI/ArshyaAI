@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Same-day Shopify, Railway, Vercel, GitHub Actions, and deployment rescue sprint by Arshya AI."
+    />
+    <title>Arshya AI | Same-day Rescue Sprint</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0d1017;
+        --panel: #151a24;
+        --panel-2: #111722;
+        --text: #f3f5f7;
+        --muted: #aab3bf;
+        --line: #263141;
+        --accent: #52d273;
+        --accent-2: #6ab9ff;
+        --warn: #ffd166;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        letter-spacing: 0;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 28px 0 22px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 18px;
+      }
+
+      .brand span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 2px;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-weight: 700;
+        font-size: 14px;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #071109;
+      }
+
+      main {
+        padding: 36px 0 54px;
+      }
+
+      .hero {
+        min-height: clamp(540px, 78vh, 760px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 34px;
+        align-items: center;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 780px;
+        font-size: clamp(42px, 7vw, 84px);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 660px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 20px;
+        line-height: 1.55;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .signals {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 34px;
+        max-width: 760px;
+      }
+
+      .signal {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.035);
+        padding: 16px;
+        min-height: 102px;
+      }
+
+      .signal b {
+        display: block;
+        font-size: 18px;
+      }
+
+      .signal span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .terminal {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #070a0f;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      }
+
+      .terminal-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 44px;
+        padding: 0 14px;
+        background: #10151f;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #ff6b6b;
+      }
+
+      .dot:nth-child(2) {
+        background: var(--warn);
+      }
+
+      .dot:nth-child(3) {
+        background: var(--accent);
+      }
+
+      .terminal-body {
+        padding: 22px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 14px;
+        line-height: 1.7;
+        color: #dce6f1;
+      }
+
+      .terminal-body p {
+        margin: 0 0 16px;
+      }
+
+      .ok {
+        color: var(--accent);
+      }
+
+      .info {
+        color: var(--accent-2);
+      }
+
+      .next-band {
+        border-top: 1px solid var(--line);
+        padding: 38px 0 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 20px;
+      }
+
+      .card h2 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+
+      .card p,
+      .card li {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .card p {
+        margin: 0;
+      }
+
+      .card ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 22px 0 32px;
+        font-size: 14px;
+      }
+
+      @media (max-width: 860px) {
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+        }
+
+        .hero {
+          min-height: auto;
+          grid-template-columns: 1fr;
+          padding-top: 16px;
+        }
+
+        .signals,
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .terminal {
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell">
+      <a class="brand" href="https://github.com/ArshyaAI" aria-label="Open ArshyaAI GitHub profile">
+        <img src="https://github.com/ArshyaAI.png?size=160" alt="Arshya AI profile avatar" />
+        <span>
+          <strong>Arshya AI</strong>
+          <span>Deployment debugging and rescue sprints</span>
+        </span>
+      </a>
+      <nav class="header-actions" aria-label="Contact links">
+        <a class="button" href="https://github.com/ArshyaAI/ArshyaAI/blob/main/RESCUE-SPRINT.md">Scope</a>
+        <a class="button primary" href="https://github.com/ArshyaAI/ArshyaAI/issues/1">Open intake</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <h1>Same-day Shopify, Railway, and deployment rescue sprint.</h1>
+          <p class="lead">
+            Fast debugging for stuck stores, failed deploys, blocked migrations, broken CI,
+            Vercel/Railway issues, and production triage when you need a concrete fix path today.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/ArshyaAI/ArshyaAI/issues/1">Start with the intake issue</a>
+            <a class="button" href="mailto:ashbahal2000@gmail.com?subject=Same-day%20rescue%20sprint">Email directly</a>
+          </div>
+          <div class="signals">
+            <div class="signal">
+              <b>Same-day</b>
+              <span>One focused recovery lane with visible checkpoints and a clear stop condition.</span>
+            </div>
+            <div class="signal">
+              <b>Operator-first</b>
+              <span>Designed for stores, founders, and agencies that need the system back online.</span>
+            </div>
+            <div class="signal">
+              <b>Proof-driven</b>
+              <span>Diagnostics, reproduction steps, PRs, deploy evidence, or a clean escalation packet.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="terminal" aria-label="Sprint process">
+          <div class="terminal-head">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="info">$</span> intake: URL, error, access path, deadline</p>
+            <p><span class="info">$</span> first pass: reproduce, isolate, rank fixes</p>
+            <p><span class="ok">pass</span> recovery plan with exact next action</p>
+            <p><span class="ok">pass</span> patch, deployment, or vendor escalation packet</p>
+            <p><span class="ok">pass</span> final handoff with evidence and residual risk</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="next-band" aria-label="Sprint details">
+        <div class="grid">
+          <article class="card">
+            <h2>Best fit</h2>
+            <ul>
+              <li>Shopify checkout, theme, app, or reactivation blockers</li>
+              <li>Railway/Vercel deployment and environment failures</li>
+              <li>GitHub Actions, Next.js, Node, Postgres, API debugging</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Output</h2>
+            <p>
+              A working fix when possible, otherwise a precise reproduction, root-cause report,
+              vendor-ready support message, or PR-ready patch.
+            </p>
+          </article>
+          <article class="card">
+            <h2>Start</h2>
+            <p>
+              Open the intake issue or email the failing URL, repo link, screenshot, deadline,
+              and what already changed. Keep secrets out of public issues.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell">
+      Public intake: <a href="https://github.com/ArshyaAI/ArshyaAI/issues/1">github.com/ArshyaAI/ArshyaAI/issues/1</a>
+    </footer>
+  </body>
+</html>
